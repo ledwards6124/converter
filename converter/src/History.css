@@ -1,0 +1,99 @@
+.history-container {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.history-header {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    max-height: 40vw;
+    overflow-y: scroll;
+    scrollbar-color: #888 #f5f5f5;
+    scrollbar-width: thin;
+}
+
+
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.history-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.history-entry {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b1b0b0;
+
+}
+
+.history-entry:last-child {
+    border-bottom: none;
+}
+
+.history-input, .history-date, .history-time, .history-output {
+    margin-bottom: 5px;
+}
+
+.history-output-binary, .history-output-decimal, .history-output-hex {
+    margin-left: 10px;
+}
+
+.no-history {
+    font-style: italic;
+    color: gray;
+}
+
+.clear-history-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #ee2e2e;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (min-width: 400px) {
+        width: 150px;
+    }
+
+    @media screen and (min-width: 600px) {
+        width: 200px;
+    }
+}
+.history-entry {
+    transition: all 0.3s ease-in-out;
+}
+.clear-history-button:hover {
+    background-color: #ff3b3b;
+}
+
+.clear-history-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
