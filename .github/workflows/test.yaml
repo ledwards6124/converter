@@ -19,7 +19,7 @@ jobs:
 
       - name: Run tests
         run: npm run test
-        working-directory: .
+        working-directory: ./converter
 
 
       - name: Upload test results
