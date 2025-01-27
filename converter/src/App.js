@@ -14,11 +14,11 @@ function App() {
 
 
   return (
-    <>
+    <div className='wrapper'>
       <h1 className='title'>Hex, Binary, and Decimal Converter</h1>
       <Converter onSave={addToHistory} />
       <History history={history} />
-    </>
+    </div>
   );
 }
 
