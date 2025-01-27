@@ -26,12 +26,18 @@ function Converter(props) {
     const [decimalInput, setDecimalInput] = useState('');
     const [hexInput, setHexInput] = useState('');
 
-    const [binaryOutput, setBinaryOutput] = useState(0);
-    const [decimalOutput, setDecimalOutput] = useState(0);
-    const [hexOutput, setHexOutput] = useState(0);
+    const [binaryOutput, setBinaryOutput] = useState('');
+    const [decimalOutput, setDecimalOutput] = useState('');
+    const [hexOutput, setHexOutput] = useState('');
 
-    const handleBinaryChange = (event) => {
+
+const handleBinaryChange = (event) => {
         const binaryValue = String(event.target.value);
+
+        if (binaryValue.match(/[^01]/)) {
+            return;    
+        }
+
         setDecimalInput('');
         setHexInput('');
         setBinaryInput(binaryValue);
@@ -45,31 +51,52 @@ function Converter(props) {
 
     const handleDecimalChange = (event) => {
         const decimalValue = event.target.value;
+      
+        if (decimalValue.match(/[^0-9]/)) {
+          return;
+        }
         setBinaryInput('');
         setHexInput('');
         setDecimalInput(decimalValue);
-
-        const binaryValue = convertDecimalToBinary(decimalValue);
-        const hexValue = convertDecimalToHex(decimalValue);
-
-        setDecimalOutput(decimalValue);
-        setBinaryOutput(binaryValue);
-        setHexOutput(hexValue);
-    }
+      
+        if (decimalValue === '') {
+          setHexOutput('');
+          setDecimalOutput('');
+          setBinaryOutput('');
+        } else {
+          const binaryValue = convertDecimalToBinary(decimalValue);
+          const hexValue = convertDecimalToHex(decimalValue);
+      
+          setDecimalOutput(decimalValue);
+          setBinaryOutput(binaryValue);
+          setHexOutput(hexValue);
+        }
+      }
 
     const handleHexChange = (event) => {
         const hexValue = event.target.value;
 
+        
+        if (hexValue.match(/^[^0-9A-F]{1,}$/)) {
+            return;    
+        }
+
+
+
+        const newHex = hexValue.toUpperCase();
+        setHexInput(newHex);
+
+
         setBinaryInput('');
         setDecimalInput('');
-        setHexInput(hexValue);
+        setHexInput(newHex);
 
-        const binaryValue = convertHexToBinary(hexValue);
-        const decimalValue = convertHexToDecimal(hexValue);
+        const binaryValue = convertHexToBinary(newHex);
+        const decimalValue = convertHexToDecimal(newHex);
 
         setDecimalOutput(decimalValue);
         setBinaryOutput(binaryValue);
-        setHexOutput(hexValue);
+        setHexOutput(newHex);
     }
 
     const updateHistory = () => {
@@ -112,9 +139,9 @@ function Converter(props) {
         setBinaryInput('');
         setDecimalInput('');
         setHexInput('');
-        setBinaryOutput(0);
-        setDecimalOutput(0);
-        setHexOutput(0);
+        setBinaryOutput('');
+        setDecimalOutput('');
+        setHexOutput('');
     }
 
     return (
@@ -127,7 +154,7 @@ function Converter(props) {
                     </label>
                     <p className='output-label'>Binary Output</p>
                     <p className='output'>
-                        {binaryOutput ? binaryOutput.match(/.{1,4}/g).join(' ') : binaryOutput}
+                        {binaryOutput ? binaryOutput.match(/.{1,4}/g).join(' ') : 'Enter a number to convert...'}
                     </p>
                 </div>
                 <div className='decimal-input-output'>
@@ -136,7 +163,7 @@ function Converter(props) {
                         <input placeholder='Decimal Input' className='input-box' type="text" value={decimalInput} onChange={handleDecimalChange} />
                     </label>
                     <p className='output-label'>Decimal Output</p>
-                    <p className='output'>{decimalOutput}</p>
+                    <p className='output'>{decimalOutput || 'Enter a number to convert...'}</p>
                 </div>
                 <div className='hex-input-output'>
                     <label className='input-label'>
@@ -144,7 +171,7 @@ function Converter(props) {
                         <input placeholder='Hex Input' className='input-box' type="text" value={hexInput} onChange={handleHexChange} />
                     </label>
                     <p className='output-label'>Hex Output</p>
-                    <p className='output'>{hexOutput}</p>
+                    <p className='output'>{hexOutput || 'Enter a number to convert...'}</p>
                 </div>
             </div>
             <div className='clear-inputs'>
@@ -222,11 +249,11 @@ export const convertDecimalToHex = (decimal) => {
 
     
     decimal = Number(decimal);
-    if (decimal <= 16) {
+    if (decimal < 16) {
         if (decimal > 9) {
-            return charToDecimal[decimal];
+            return decimalToChar[decimal];
         } else {
-            return decimal;
+            return String(decimal);
         }
     }
 
@@ -237,9 +264,9 @@ export const convertDecimalToHex = (decimal) => {
         const quotient = Math.floor(tempDecimal / 16);
         tempDecimal = quotient;
         if (remainder > 9) {
-            hex = decimalToChar[remainder] + hex;
+        hex = decimalToChar[remainder] + hex;
         } else {
-            hex = String(remainder) + hex;
+        hex = String(remainder) + hex;
         }
     }
     return hex;
