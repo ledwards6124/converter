@@ -36,7 +36,7 @@ describe('local storage', () => {
 
        const clearButton = getByText(app.container, 'Clear History');
        fireEvent.click(clearButton);
-       expect(localStorage.getItem('history')).toBe('[]');
+       expect(localStorage.getItem('history')).toBe(null);
     })
 
     it('saves the right date and time', () => {
