@@ -40,6 +40,7 @@ describe('local storage', () => {
     })
 
     it('saves the right date and time', () => {
+        localStorage.setItem('history', '[]');
                //render app
        const app = render(<App />);
        //input decimal
