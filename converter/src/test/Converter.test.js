@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, getByPlaceholderText } from '@testing-library/react';
-import Converter from './Converter';
-import { convertBinaryToDecimal, convertDecimalToBinary, convertDecimalToHex, convertHexToDecimal, convertBinaryToHex, convertHexToBinary } from './Converter';
+import Converter from '../Converter';
+import { convertBinaryToDecimal, convertDecimalToBinary, convertDecimalToHex, convertHexToDecimal, convertBinaryToHex, convertHexToBinary } from '../Converter';
 
 describe('binary to decimal converter', () => {
     it('converts binary to decimal', () => {

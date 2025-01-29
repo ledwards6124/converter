@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, getByPlaceholderText, getByText } from '@testing-library/react';
-import App from './App';
+import App from '../App';
 import { jest } from '@jest/globals';
 
 
