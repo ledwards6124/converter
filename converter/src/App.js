@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './css/App.css';
 import {useState} from 'react';
 import Converter from './Converter';
@@ -15,7 +14,7 @@ function App() {
 
   return (
     <div className='wrapper'>
-      <h1 className='title'>Hex, Decimal, and Binary Converter</h1>
+      <h1 className='title'>Binary, Decimal, and Hex Converter</h1>
       <Converter onSave={addToHistory} />
       <History history={history} />
     </div>

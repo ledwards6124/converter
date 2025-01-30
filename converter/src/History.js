@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './css/History.css';
@@ -59,7 +59,7 @@ function History(props) {
             </div>
             <div className="history-button">            
                 <input className='clear-history-button' type='button' value='Clear History' onClick={clearHistory} />
-                <SaveButton method='JSON'/>
+                <SaveButton className='save-history-file' method='JSON'/>
                 <SaveButton method='CSV'/>
             </div>
         </div>

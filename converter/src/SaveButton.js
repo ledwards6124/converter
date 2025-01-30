@@ -1,5 +1,6 @@
 import React from "react";
-import './css/SaveButton.css';
+import './css/History.css';
+
 
 function SaveButton(props) {
 
@@ -9,7 +10,7 @@ function SaveButton(props) {
         const date = new Date().toLocaleDateString(Intl.DateTimeFormat().resolvedOptions().locale);
         if (props.method === 'JSON') {
             const link = document.createElement('a');
-            link.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.parse(localStorage.getItem('history')));
+            link.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(JSON.parse(localStorage.getItem('history')), null, 4));
             link.download = 'conversion_history_' + date + '.json';
             link.click();
         } else if (props.method === 'CSV') {
@@ -21,32 +22,22 @@ function SaveButton(props) {
     }
 
     const jsonToCSV = (json) => {
-        let csv = '';
-        const keys = Object.keys(json);
-        const outputKeys = Object.keys(json.input);
-        keys.forEach((key) => {
-            csv += key + ', ';
-        })
-        outputKeys.forEach((key) => {
-            csv += key + ', ';
-        })
-        csv += '\r\n';
-        json.forEach((item) => {
-            keys.forEach((key) => {
-                csv += item[key] + ', ';
-            })
-            outputKeys.forEach((key) => {
-                csv += item.output[key] + ', ';
-            })
-            csv += '\r\n';
-        })
+        let csv = 'input, binary_output, decimal_output, hex_output, date, time\n';
+        for (let entry of json) {
+            const date = entry.date;
+            const time = entry.time;
+            const input = entry.input;
+            const binaryOutput = entry.output.binary;
+            const hexOutput = entry.output.hex;
+            const decimalOutput = entry.output.decimal;
+            csv += `${input}, ${binaryOutput}, ${decimalOutput}, ${hexOutput}, ${date}, ${time}\n`;
+        }
         return csv;
-
         
     }
 
     return (
-        <label>
+        <label className="save-history-label">
         <button  className='save-history-button' onClick={save}>
             Download {method} History
         </button>
