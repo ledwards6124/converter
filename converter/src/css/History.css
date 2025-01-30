@@ -1,151 +1,113 @@
+/* History Section */
 .history-container {
-    background-color: #ececec;
-    border: 1px solid #888;
-    border-radius: 5px;
-    padding: 10px;
-    flex-grow: 1;
-    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
 
 }
 
+.history-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.history-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* History Title */
 .history-header {
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    font-weight: 700;
     text-align: center;
-    padding-bottom: 2.5%;
-    border-bottom: 1px solid #888;
+    margin-bottom: 12px;
+    color: #222;
 }
 
+/* History List */
 .history-list {
-    list-style: none;
-    padding: 0;
-    height: 40vh;
-    overflow-y: scroll;
-    scrollbar-color: #888 #ececec;
-    scrollbar-width: thin;
-    border-bottom: #888 solid 1px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
-.delete-icon {
-    font-size: 200%;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+/* Individual Entry */
+.history-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafafa;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
 
+.history-entry:hover {
+    background: #f1f1f1;
+}
+
+/* Delete Button */
+.delete-icon {
+    cursor: pointer;
+    font-size: 18px;
+    color: #d33c41;
+    transition: 0.3s;
 }
 
 .delete-icon:hover {
-    transform: scale(1.2);
+    color: #ff3b3b;
 }
 
-.delete-icon:active {
-    transform: scale(0.95);
-}
-
-    
-
-
-.history-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 40vh;
-    
-}
-.history-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.history-input, .history-output {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-}
-
-.history-entry {
-    display: flex;
-    flex-direction: row;
-    min-width: 90vw;
-    justify-content: space-around;
-}
-
-.result-input-div, .result-output-div  {
-    
-    display: grid;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    border: solid;
-    border-width: 1px;
-    border-radius: 25px;
-    min-width: 200px;
-    max-width: min-content;
-}
-
-.history-entry:last-child {
-    border-bottom: none;
-}
-
-.history-input, .history-date, .history-time, .history-output {
-    margin: 0px;
-}
-
-.numeric-output, .numeric-input {
-    color: #208ad9;
-    display: block;
-
-}
-
-.history-output-binary, .history-output-decimal, .history-output-hex {
-    margin-left: 10px;
-}
-
-.no-history {
-    font-style: italic;
-    color: gray;
-    font-size: 18px;
-    
-}
-
+/* Clear History Button */
 .clear-history-button {
-    display: flex;
-    max-width: min-content;
-    margin: 20px auto;
-    padding: 10px;
+    width: 100%;
+    max-width: 250px;
+    padding: 12px;
     font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 6px;
     border: none;
-    border-radius: 10px;
+    background-color: #e74c3c;
     color: white;
-    background-color: #d33c41;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease-in-out;
-
-    @media screen and (min-width: 400px) {
-        width: 150px;
-    }
-
-    @media screen and (min-width: 600px) {
-        width: 200px;
-    }
-}
-.history-entry {
     transition: all 0.3s ease-in-out;
 }
+
 .clear-history-button:hover {
-    background-color: #ff3b3b;
+    background-color: #c0392b;
 }
 
-.clear-history-button:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .history-header {
+        font-size: 1.4rem;
+    }
 }
 
-.result-input-div > p, .result-output-div > p {
-    font-size: 150%;
-}
-
+/* Desktop Media Query */
+@media screen and (min-width: 1200px) {
+    .history-container {
+        max-width: 1200px; /* Increase max-width for larger screens */
+        margin: 30px auto; /* Adjust margin for better spacing */
+        padding: 24px; /* Increase padding for better spacing */
+    }
+  
+    .history-header {
+        font-size: 2rem; /* Increase header size for larger screens */
+    }
+  
+    .history-list {
+        max-height: 400px; /* Increase max-height for more visible entries */
+    }
+  
+    .clear-history-button {
+        max-width: 300px; /* Increase button width for larger screens */
+    }
+  }

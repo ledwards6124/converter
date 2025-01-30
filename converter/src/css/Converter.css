@@ -1,100 +1,128 @@
+/* Converter Input Section */
 .input-div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.binary-input-output, .decimal-input-output, .hex-input-output {
-    display: flex;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
     flex-direction: column;
-    align-items: center;
+    gap: 12px;
 }
 
-.input-label, .output-label {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+/* Input and Output Blocks */
+.binary-input-output, 
+.decimal-input-output, 
+.hex-input-output {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 14px;
     text-align: center;
-}
-
-.input-box {
-    box-sizing: border-box;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease-in-out;
-    padding: 10px;
+    font-weight: bold;
+}
+
+.binary-input-output:hover, 
+.decimal-input-output:hover, 
+.hex-input-output:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Labels */
+.input-label p, 
+.output-label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+/* Input Fields */
+.input-box {
+    width: 95%;
+    padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    outline: none;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-y: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
     text-align: center;
-    background-color: #ffffff;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    caret-color: #007bff; /* Change cursor color to match the theme */
+    
 }
 
 
-.input-box:hover {
-    border-color: #208ad9;
-    box-shadow: 0 0 8px 0 208ad9;
-}
 
 .input-box:focus {
-    border-color: #74fb5c;
-    box-shadow: 0 0 8px 0 #74fb5c;
+    border-color: #007bff;
+    box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.4);
+    outline: none;
 }
 
+/* Buttons */
 .clear-button, .save-button {
-    background-color: #d33c41;
-    color: white;
-    border-radius: 10px;
+    width: 100%;
+    max-width: 250px;
+    margin: 12px auto;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 6px;
     cursor: pointer;
-    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
     border: none;
-    min-width: 120px;
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    transition: all 0.2s ease-in-out;
 }
 
-@media screen and (max-width: 600px) {
-    .clear-button, .save-button {
-        font-size: 16px;
-        min-width: 100px;
-        padding: 8px 16px;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .clear-button, .save-button {
-        font-size: 14px;
-        min-width: 80px;
-        padding: 6px 12px;
-    }
+.clear-button {
+    background-color: #e74c3c;
+    color: white;
 }
 
 .clear-button:hover {
-    background-color: #ff3b3b;
-}
-
-.clear-button:active, .save-button:active {
-    transform: scale(0.95);
+    background-color: #c0392b;
 }
 
 .save-button {
-    color: black;
-    background-color: #90e20c;
+    background-color: #2ecc71;
+    color: white;
 }
 
 .save-button:hover {
-    background-color: #74fb5c;
+    background-color: #27ae60;
 }
-.clear-button, .save-button {
-    display: block;
+
+.clear-inputs, 
+.save-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.clear-button, .save-button {
-    margin: 10px auto;
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .input-div {
+        flex-direction: column;
+    }
 }
+
+/* Desktop Media Query */
+@media screen and (min-width: 1200px) {
+    .input-div {
+        flex-direction: row; /* Arrange input fields in a row for better use of space */
+        gap: 24px; /* Increase gap between input fields */
+    }
+  
+    .binary-input-output, 
+    .decimal-input-output, 
+    .hex-input-output {
+        flex: 1; /* Allow input/output blocks to take equal space */
+    }
+  
+    .input-box {
+        width: 90%; /* Full width for input boxes */
+    }
+  
+    .clear-button, .save-button {
+        max-width: 300px; /* Increase button width for larger screens */
+    }
+  }
+

@@ -1,0 +1,50 @@
+/* Copy Button */
+.copy-button {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Hover and Active Effects */
+.copy-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.copy-button:active {
+    transform: scale(0.97);
+}
+
+/* Disabled State */
+.copy-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Mobile Optimization */
+@media screen and (max-width: 600px) {
+    .copy-button {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+/* Desktop Media Query */
+@media screen and (min-width: 1200px) {
+    .copy-button {
+        font-size: 18px; /* Increase font size for better readability */
+        padding: 14px 24px; /* Increase padding for larger buttons */
+    }
+  }

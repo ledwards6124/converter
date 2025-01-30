@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './css/History.css';
+import SaveButton from "./SaveButton";
 
 function History(props) {
 
@@ -56,7 +57,11 @@ function History(props) {
                     </div></>
                 ))}
             </div>
-            <input className='clear-history-button' type='button' value='Clear History' onClick={clearHistory} />
+            <div className="history-button">            
+                <input className='clear-history-button' type='button' value='Clear History' onClick={clearHistory} />
+                <SaveButton method='JSON'/>
+                <SaveButton method='CSV'/>
+            </div>
         </div>
         </>
     )
