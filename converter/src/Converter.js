@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './css/Converter.css';
+import CopyButton from './CopyButton';
 
 function Converter(props) {
 
@@ -156,6 +157,7 @@ const handleBinaryChange = (event) => {
                     <p className='output'>
                         {binaryOutput ? binaryOutput.match(/.{1,4}/g).join(' ') : 'Enter a number to convert...'}
                     </p>
+                    <CopyButton dataType='Binary' toCopy={binaryOutput}/>
                 </div>
                 <div className='decimal-input-output'>
                     <label className='input-label'>
@@ -164,6 +166,7 @@ const handleBinaryChange = (event) => {
                     </label>
                     <p className='output-label'>Decimal Output</p>
                     <p className='output'>{decimalOutput || 'Enter a number to convert...'}</p>
+                    <CopyButton dataType='Decimal' toCopy={decimalOutput}/>
                 </div>
                 <div className='hex-input-output'>
                     <label className='input-label'>
@@ -172,12 +175,14 @@ const handleBinaryChange = (event) => {
                     </label>
                     <p className='output-label'>Hex Output</p>
                     <p className='output'>{hexOutput || 'Enter a number to convert...'}</p>
+                    <CopyButton dataType='Hex' toCopy={hexOutput}/>
+
                 </div>
             </div>
             <div className='clear-inputs'>
                 <input className='clear-button' type='button' value='Clear Inputs' onClick={clearInputs} />
             </div>
-            <div className='save-div'>
+            <div className='save-inputs'>
                 <input className='save-button' type="button" value="Save Conversion" onClick={updateHistory} />
             </div>
         </>

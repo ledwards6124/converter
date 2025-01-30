@@ -1,18 +1,89 @@
-.title {
-  font-size: 2em;
-  text-align: center;
-  color: #333;
-  margin-bottom: 0.5em;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
-.sub-title {
-  text-align: center;
-  color: #333;
-  font-size: 1vh;
+html {
+  scroll-behavior: smooth;
 }
 
+/* General Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* Wrapper */
 .wrapper {
-  background-color: #ececec ;
-  overflow: hidden;
-  max-height: 100vh;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+/* Customize the scrollbar track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar:active {
+  background: #3f3f3f; /* Darker thumb on hover */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 10px;
+}
+
+/* Customize the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Gray color for the thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker thumb on hover */
+}
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .wrapper {
+      padding: 18px;
+      margin: 30px auto;
+  }
+
+  .title {
+      font-size: 1.8rem;
+  }
+}
+
+/* Desktop Media Query */
+@media screen and (min-width: 1200px) {
+  .wrapper {
+      max-width: 1200px; /* Increase the max-width for larger screens */
+      margin: 50px auto;
+      padding: 32px; /* Increase padding for better spacing */
+  }
+
+  .title {
+      font-size: 2.5rem; /* Increase title size for larger screens */
+  }
 }
