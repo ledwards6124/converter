@@ -19,7 +19,7 @@
 /* Hover Effect */
 .save-history-button:hover {
     background-color: #282929; /* Darker green on hover */
-    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); /* Slightly larger shadow on hover */
+    box-shadow: 0 4px 10px rgba(32, 32, 32, 0.3); /* Slightly larger shadow on hover */
 }
 
 /* Active Effect */
