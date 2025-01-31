@@ -52,6 +52,7 @@ function History(props) {
                             <p className='history-output-binary'>Binary: <span className='numeric-output'>{entry.output.binary}</span></p>
                             <p className='history-output-decimal'>Decimal: <span className='numeric-output'>{entry.output.decimal}</span></p>
                             <p className='history-output-hex'>Hex: <span className='numeric-output'>{entry.output.hex}</span></p>
+                            <p className='history-output-octal'>Octal: <span className='numeric-output'>{entry.output.octal}</span></p>
                         </div>
 
                     </div></>

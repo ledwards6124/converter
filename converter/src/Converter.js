@@ -3,52 +3,61 @@ import './css/Converter.css';
 import CopyButton from './CopyButton';
 
 function Converter(props) {
-
-    const charToDecimal = {
-        'A': 10,
-        'B': 11,
-        'C': 12,
-        'D': 13,
-        'E': 14,
-        'F': 15
-    };
-    
-    const decimalToChar = {
-        10: 'A',
-        11: 'B',
-        12: 'C',
-        13: 'D',
-        14: 'E',
-        15: 'F'
-    };
-
-
     const [binaryInput, setBinaryInput] = useState('');
     const [decimalInput, setDecimalInput] = useState('');
     const [hexInput, setHexInput] = useState('');
+    const [octalInput, setOctalInput] = useState('');
 
     const [binaryOutput, setBinaryOutput] = useState('');
     const [decimalOutput, setDecimalOutput] = useState('');
     const [hexOutput, setHexOutput] = useState('');
+    const [octalOutput, setOctalOutput] = useState('');
 
 
-const handleBinaryChange = (event) => {
-        const binaryValue = String(event.target.value);
 
-        if (binaryValue.match(/[^01]/)) {
+    const handleOctalChange = (event) => {
+        const octalValue = String(event.target.value);
+
+        if (octalValue.match(/[^0-7]/)) {
             return;    
         }
 
         setDecimalInput('');
+        setBinaryInput('');
         setHexInput('');
-        setBinaryInput(binaryValue);
-        const decimalValue = convertBinaryToDecimal(binaryValue);
-        const hexValue = convertBinaryToHex(binaryValue);
+        setOctalInput(octalValue);
+
+        const decimalValue = convertOctalToDecimal(octalValue);
+        const binaryValue = convertOctalToBinary(octalValue);
+        const hexValue = convertOctalToHex(octalValue);
 
         setDecimalOutput(decimalValue);
         setBinaryOutput(binaryValue);
         setHexOutput(hexValue);
+        setOctalOutput(octalValue);
+
     }
+
+    const handleBinaryChange = (event) => {
+            const binaryValue = String(event.target.value);
+
+            if (binaryValue.match(/[^01]/)) {
+                return;    
+            }
+
+            setDecimalInput('');
+            setHexInput('');
+            setOctalInput('');
+            setBinaryInput(binaryValue);
+            const decimalValue = convertBinaryToDecimal(binaryValue);
+            const hexValue = convertBinaryToHex(binaryValue);
+            const octalValue = convertBinaryToOctal(binaryValue);
+
+            setDecimalOutput(decimalValue);
+            setBinaryOutput(binaryValue);
+            setHexOutput(hexValue);
+            setOctalOutput(octalValue);
+        }
 
     const handleDecimalChange = (event) => {
         const decimalValue = event.target.value;
@@ -58,19 +67,23 @@ const handleBinaryChange = (event) => {
         }
         setBinaryInput('');
         setHexInput('');
+        setOctalInput('');
         setDecimalInput(decimalValue);
       
         if (decimalValue === '') {
           setHexOutput('');
           setDecimalOutput('');
           setBinaryOutput('');
+          setOctalInput('');
         } else {
           const binaryValue = convertDecimalToBinary(decimalValue);
           const hexValue = convertDecimalToHex(decimalValue);
-      
+          const octalValue = convertDecimalToOctal(decimalValue);
+
           setDecimalOutput(decimalValue);
           setBinaryOutput(binaryValue);
           setHexOutput(hexValue);
+          setOctalOutput(octalValue);
         }
       }
 
@@ -90,18 +103,21 @@ const handleBinaryChange = (event) => {
 
         setBinaryInput('');
         setDecimalInput('');
+        setOctalInput('');
         setHexInput(newHex);
 
         const binaryValue = convertHexToBinary(newHex);
         const decimalValue = convertHexToDecimal(newHex);
+        const octalValue = convertHexToOctal(newHex);
 
+        setOctalOutput(octalValue);
         setDecimalOutput(decimalValue);
         setBinaryOutput(binaryValue);
         setHexOutput(newHex);
     }
 
     const updateHistory = () => {
-        const savedInput = binaryInput || decimalInput || hexInput;
+        const savedInput = binaryInput || decimalInput || hexInput || octalInput;
         if (!savedInput) {
             return;
         }
@@ -112,7 +128,8 @@ const handleBinaryChange = (event) => {
             output: {
                 binary: binaryOutput,
                 decimal: decimalOutput,
-                hex: hexOutput
+                hex: hexOutput,
+                octal: octalInput
             }
         }
         saveToBrowser(entry);
@@ -178,6 +195,16 @@ const handleBinaryChange = (event) => {
                     <CopyButton dataType='Hex' toCopy={hexOutput}/>
 
                 </div>
+                <div className='octal-input-output'>
+                    <label className='input-label'>
+                        <p>Octal Input</p>
+                        <input placeholder='Octal Input' className='input-box' type="text" value={octalInput} onChange={handleOctalChange} />
+                    </label>
+                    <p className='output-label'>Octal Output</p>
+                    <p className='output'>{octalOutput || 'Enter a number to convert...'}</p>
+                    <CopyButton dataType='Octal' toCopy={octalOutput}/>
+
+                </div>
             </div>
             <div className='clear-inputs'>
                 <input className='clear-button' type='button' value='Clear Inputs' onClick={clearInputs} />
@@ -232,17 +259,6 @@ export const convertDecimalToBinary = (decimal) => {
 }
 
 export const convertDecimalToHex = (decimal) => {
-
-    const charToDecimal = {
-        'A': 10,
-        'B': 11,
-        'C': 12,
-        'D': 13,
-        'E': 14,
-        'F': 15
-    };
-
-
     const decimalToChar = {
         10: 'A',
         11: 'B',
@@ -310,6 +326,59 @@ export const convertHexToDecimal = (hex) => {
         decimal += Number(digit) * Math.pow(16, hexString.length - i - 1);
     }
     return decimal;
+}
+
+export const convertOctalToDecimal = (octal) => {
+    let decimal = 0;
+    const octalString = String(octal);
+    for (let i = 0; i < octalString.length; i++) {
+        const digit = octalString[i];
+        decimal += Number(digit) * Math.pow(8, octalString.length - i - 1);
+    }
+    return decimal;
+}
+
+export const convertOctalToBinary = (octal) => {
+    let binary = '';
+    const values = {
+        0: '000',
+        1: '001',
+        2: '010',
+        3: '011',
+        4: '100',
+        5: '101',
+        6: '110',
+        7: '111',
+    }
+    const octalString = String(octal);
+    for (let i = 0; i < octalString.length; i++) {
+        const digit = octalString[i];
+        binary += values[digit];
+    }
+    return binary;
+}
+
+export const convertOctalToHex = (octal) => {
+    return convertDecimalToHex(convertOctalToDecimal(octal))
+}
+
+export const convertBinaryToOctal = (binary) => {
+    return convertDecimalToOctal(convertBinaryToDecimal(binary))
+}
+
+export const convertHexToOctal = (hex) => {
+    return convertBinaryToOctal(convertHexToBinary(hex));
+}
+
+export const convertDecimalToOctal = (decimal) => {
+    let octal = '';
+    let decNum = Number(decimal);
+    while (decNum > 0) {
+        const remainder = decNum % 8;
+        decNum = Math.floor(decNum / 8);
+        octal = remainder.toString() + octal;
+    }
+    return octal;
 }
 
 export default Converter;

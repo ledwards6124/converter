@@ -38,6 +38,7 @@ body {
 
 /* Customize the scrollbar track */
 ::-webkit-scrollbar {
+  scrollbar-width: thin;
   width: 12px; /* Width of the scrollbar */
 }
 

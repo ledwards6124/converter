@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, getByPlaceholderText } from '@testing-library/react';
-import Converter from '../Converter';
+import Converter, { convertBinaryToOctal, convertDecimalToOctal, convertHexToOctal, convertOctalToBinary, convertOctalToDecimal, convertOctalToHex } from '../Converter';
 import { convertBinaryToDecimal, convertDecimalToBinary, convertDecimalToHex, convertHexToDecimal, convertBinaryToHex, convertHexToBinary } from '../Converter';
 
 describe('binary to decimal converter', () => {
@@ -56,6 +56,60 @@ describe('hex to binary converter', () => {
         expect(result2).toBe('10101010101010100100');
     })
 })
+
+describe('binary to octal converter', () => {
+    it('converts binary to octal', () => {
+        const result = convertBinaryToOctal('11010100101');
+        expect(result).toBe('3245');
+        const result2 = convertBinaryToOctal('11010100010101');
+        expect(result2).toBe('32425');
+    })
+})
+
+describe('decimal to octal converter', () => {
+    it('converts decimal to octal', () => {
+        const result = convertDecimalToOctal(572);
+        expect(result).toBe('1074');
+        const result2 = convertDecimalToOctal(572134);
+        expect(result2).toBe('2135346');
+    })
+})
+
+describe('hex to octal converter', () => {
+    it('converts hex to octal', () => {
+        const result = convertHexToOctal('AAAA4');
+        expect(result).toBe('2525244');
+        const result2 = convertHexToOctal('AEAE45A');
+        expect(result2).toBe('1272562132');
+    })
+})
+
+describe('octal to binary converter', () => {
+    it('converts binary to octal', () => {
+        const result = convertOctalToBinary('3245');
+        expect(result).toBe('011010100101');
+        const result2 = convertOctalToBinary('1111111111');
+        expect(result2).toBe('001001001001001001001001001001');
+    });
+});
+
+describe('octal to decimal converter', () => {
+    it('converts decimal to octal', () => {
+        const result = convertOctalToDecimal('1074');
+        expect(result).toBe(572);
+        const result2 = convertOctalToDecimal('133746037202');
+        expect(result2).toBe(12341231234);
+    });
+});
+
+describe('octal to hex converter', () => {
+    it('converts hex to octal', () => {
+        const result = convertOctalToHex('133746037202');
+        expect(result).toBe('2DF983E82');
+        const result2 = convertOctalToHex('2222222222222222222');
+        expect(result2).toBe('92492492492490');
+    });
+});
 
 describe('component renders correctly', () => {
     it('renders correctly', () => {

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className='wrapper'>
-      <h1 className='title'>Binary, Decimal, and Hex Converter</h1>
+      <h1 className='title'>Binary, Decimal, Hex and, Octal Converter</h1>
       <Converter onSave={addToHistory} />
       <History history={history} />
     </div>

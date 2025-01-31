@@ -8,7 +8,8 @@
 /* Input and Output Blocks */
 .binary-input-output, 
 .decimal-input-output, 
-.hex-input-output {
+.hex-input-output,
+.octal-input-output {
     background: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -21,7 +22,8 @@
 
 .binary-input-output:hover, 
 .decimal-input-output:hover, 
-.hex-input-output:hover {
+.hex-input-output:hover,
+.octal-input-output:hover {
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -113,7 +115,8 @@
   
     .binary-input-output, 
     .decimal-input-output, 
-    .hex-input-output {
+    .hex-input-output,
+    .octal-input-output {
         flex: 1; /* Allow input/output blocks to take equal space */
     }
   
