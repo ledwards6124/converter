@@ -40,7 +40,7 @@ function History(props) {
             <h2 className='history-header'>Conversion History:</h2>
             <div className='history-list'>
                 {history.length === 0 ? <p className='no-history'>No history...</p> : history.map((entry, index) => (
-                    <><FontAwesomeIcon onClick={deleteEntry.bind(this, entry)} icon={faTrashCan} className="delete-icon" />
+                    <><FontAwesomeIcon key={entry.input} onClick={deleteEntry.bind(this, entry)} icon={faTrashCan} className="delete-icon" />
                     <div key={entry.input} className='history-entry'>
                         <div className='result-input-div'>
                             <p className='history-input'>Input: <span className='numeric-input'>{entry.input}</span></p>
