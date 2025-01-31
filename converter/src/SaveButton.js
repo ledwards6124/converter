@@ -22,7 +22,7 @@ function SaveButton(props) {
     }
 
     const jsonToCSV = (json) => {
-        let csv = 'input, binary_output, decimal_output, hex_output, date, time\n';
+        let csv = 'input, binary_output, decimal_output, hex_output, octal_output, date, time\n';
         for (let entry of json) {
             const date = entry.date;
             const time = entry.time;
@@ -30,7 +30,8 @@ function SaveButton(props) {
             const binaryOutput = entry.output.binary;
             const hexOutput = entry.output.hex;
             const decimalOutput = entry.output.decimal;
-            csv += `${input}, ${binaryOutput}, ${decimalOutput}, ${hexOutput}, ${date}, ${time}\n`;
+            const octalOutput = entry.output.octal;
+            csv += `${input}, ${binaryOutput}, ${decimalOutput}, ${hexOutput}, ${octalOutput}, ${date}, ${time}\n`;
         }
         return csv;
         
