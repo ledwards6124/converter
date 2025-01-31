@@ -19,7 +19,7 @@ jobs:
 
       - name: Run tests
         run: npm run test
-        working-directory: src
+        working-directory: converter/src
 
 
       - name: Upload test results
